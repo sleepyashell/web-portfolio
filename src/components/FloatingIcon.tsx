@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
 import { u } from "@/lib/units";
 
 export type FloatingIconProps = {
@@ -17,7 +18,7 @@ export type FloatingIconProps = {
 };
 
 export function FloatingIcon({ src, x, y, width, height, rotate, delay = 0 }: FloatingIconProps) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
 
   return (
     <motion.div

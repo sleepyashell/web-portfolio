@@ -3,7 +3,12 @@ export type ProjectImage = { src: string; alt: string };
 export type Project = {
   id: string;
   name: string;
+  /** Large logo on the details slide. */
   logo: string;
+  /** Small icon inside the project tab. */
+  icon: string;
+  /** Icon for the selected (blue) tab; defaults to `icon` tinted white. */
+  iconActive?: string;
   /** Tab label color, a theme color name (e.g. "kembali"). */
   accent: string;
   context: string;

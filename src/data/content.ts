@@ -15,16 +15,17 @@ export const profile: Profile = {
   cvUrl: "/cv.pdf",
 };
 
-// Placeholder image paths; real files are added with the works folder.
-const images = (id: string, name: string) => [
-  { src: `/images/projects/${id}/1.png`, alt: `${name} interface preview` },
+// Placeholder mockup until real images are ready.
+const placeholder = (name: string) => [
+  { src: "/images/projects/placeholder.svg", alt: `${name} mockup placeholder` },
 ];
 
 export const projects: Project[] = [
   {
     id: "salingjaga",
     name: "SalingJaga",
-    logo: "/images/projects/salingjaga/logo.svg",
+    logo: "/images/works/icons/salingjaga.svg",
+    icon: "/images/works/icons/salingjaga.svg",
     accent: "salingjaga",
     context: "UNITY #14 — 3rd Honorable Mention",
     role: "UX Researcher & UI Designer",
@@ -41,12 +42,13 @@ export const projects: Project[] = [
       "Community fraud reporting synced with official authority data",
       "Built-in security education for users with limited tech literacy",
     ],
-    images: images("salingjaga", "SalingJaga"),
+    images: placeholder("SalingJaga"),
   },
   {
     id: "kembali",
     name: "Kembali",
-    logo: "/images/projects/kembali/logo.svg",
+    logo: "/images/works/icons/kembali.svg",
+    icon: "/images/works/icons/kembali.svg",
     accent: "kembali",
     context: "UXVIDIA · Arkavidia — Top 12 of 100+ teams",
     role: "UX Researcher & UI Designer",
@@ -63,13 +65,15 @@ export const projects: Project[] = [
       "Verified handover using face verification and a digital signature",
       "Officer dashboard to manage, verify, and return items",
     ],
-    images: images("kembali", "Kembali"),
+    images: placeholder("Kembali"),
   },
   {
     id: "jagaborneo",
     name: "JagaBorneo",
     logo: "/images/projects/jagaborneo/logo.svg",
-    accent: "folder-blue",
+    icon: "/images/projects/jagaborneo/logo.svg",
+    iconActive: "/images/works/icons/jagaborneo.svg",
+    accent: "jagaborneo",
     context: "Competition project — deployed",
     role: "Product & UI Designer",
     summary:
@@ -84,12 +88,13 @@ export const projects: Project[] = [
       "Weather-based fire risk prediction",
       "Community reporting as additional on-the-ground information",
     ],
-    images: images("jagaborneo", "JagaBorneo"),
+    images: [{ src: "/images/projects/jagaborneo/1.webp", alt: "JagaBorneo landing page on a laptop" }],
   },
   {
     id: "rintis-ai",
     name: "Rintis AI",
-    logo: "/images/projects/rintis-ai/logo.svg",
+    logo: "/images/works/icons/rintis-ai.svg",
+    icon: "/images/works/icons/rintis-ai.svg",
     accent: "rintis",
     context: "COMPFEST 18 · AI Innovation Challenge — deployed",
     role: "Product & UI Designer",
@@ -105,12 +110,13 @@ export const projects: Project[] = [
       "Price simulation for what-if analysis before setting a price",
       "Alternative micro-niche suggestions when a market is too crowded",
     ],
-    images: images("rintis-ai", "Rintis AI"),
+    images: placeholder("Rintis AI"),
   },
   {
     id: "pahamind",
     name: "Pahamind",
-    logo: "/images/projects/pahamind/logo.svg",
+    logo: "/images/works/icons/pahamind.svg",
+    icon: "/images/works/icons/pahamind.svg",
     accent: "pahamind",
     context: "Course project",
     role: "UX Researcher & UI Designer",
@@ -127,11 +133,11 @@ export const projects: Project[] = [
       "Visual Learning Path: maps how concepts connect",
       "Smart Highlighting and gamified streaks",
     ],
-    images: images("pahamind", "Pahamind"),
+    images: placeholder("Pahamind"),
   },
 ];
 
-export const defaultProjectId = "kembali";
+export const defaultProjectId = "salingjaga";
 
 export const skills: Skill[] = [
   { name: "React", category: "framework" },

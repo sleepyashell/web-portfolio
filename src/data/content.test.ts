@@ -13,7 +13,7 @@ describe("content", () => {
 
   it("defaults to an existing project", () => {
     expect(projects.some((p) => p.id === defaultProjectId)).toBe(true);
-    expect(defaultProjectId).toBe("kembali");
+    expect(defaultProjectId).toBe("salingjaga");
   });
 
   it.each(projects.map((p) => [p.name, p] as const))("%s has complete content", (_, p) => {
