@@ -21,23 +21,27 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
 export function ProjectDetails({ project }: { project: Project }) {
   return (
     <div
-      className="flex flex-col items-center px-5 md:flex-row md:items-start md:px-0"
-      style={{ padding: `${u(20)} max(20px, ${u(190)})`, gap: uMin(60, 20) }}
+      className="flex flex-col items-center px-5 md:flex-row md:items-stretch md:px-0"
+      style={{ padding: `${u(20)} max(20px, ${u(200)}) ${u(20)} 0`, gap: uMin(40, 20) }}
     >
-      <img
-        src={project.logo}
-        alt={`${project.name} logo`}
-        className="shrink-0 object-contain md:mt-[calc(30*var(--u))]"
-        style={{ width: uMin(300, 110), height: uMin(300, 110) }}
-      />
+      {/* Logo sits centred (both axes) in its own column, between the folder edge and the text. */}
+      <div className="flex shrink-0 items-center justify-center md:w-[calc(560*var(--u))]">
+        <img
+          src={project.logo}
+          alt={`${project.name} logo`}
+          className="object-contain"
+          style={{ width: uMin(300, 110), height: uMin(300, 110) }}
+        />
+      </div>
 
-      <div className="w-full min-w-0 flex-1" style={body}>
+      <div className="w-full min-w-0 flex-1 self-center" style={body}>
         <p className="text-ink/60" style={{ fontSize: "clamp(12px, 0.8vw, 14px)" }}>
           {project.team && (
-            <span className="mr-2 inline-block rounded-full bg-chip px-2 py-0.5 font-medium text-ink/80">
-              Team Project
-            </span>
-          )}{" "}
+            <>
+              <span>Team Project</span>
+              <span aria-hidden> · </span>
+            </>
+          )}
           <span>{project.context}</span>
           <span aria-hidden> · </span>
           <span>{project.role}</span>

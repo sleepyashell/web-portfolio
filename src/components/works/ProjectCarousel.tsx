@@ -123,7 +123,7 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
         style={{ paddingBlock: `${uMin(24, 16)} ${uMin(40, 20)}` }}
       >
         <Arrow dir="prev" disabled={slide === 0} onClick={prev} />
-        <div className="flex justify-center" style={{ gap: uMin(10, 8) }}>
+        <div className="flex justify-center" style={{ gap: uMin(10, 6) }}>
           {Array.from({ length: slideCount }, (_, i) => (
             <button
               key={i}
@@ -132,7 +132,7 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
               aria-current={i === slide ? "true" : undefined}
               onClick={() => goTo(i)}
               className={`rounded-full transition-colors ${i === slide ? "bg-folder-blue" : "bg-[#e5e5ea]"}`}
-              style={{ width: uMin(30, 10), height: uMin(30, 10) }}
+              style={{ width: uMin(14, 8), height: uMin(14, 8) }}
             />
           ))}
         </div>
