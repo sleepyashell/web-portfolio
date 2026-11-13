@@ -34,13 +34,12 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       id={id}
       aria-labelledby={`${id}-title`}
       data-reduced-motion={reduceMotion ? "true" : "false"}
-      className="relative mx-auto max-w-full scroll-mt-6"
+      className="relative mx-auto max-w-full scroll-mt-6 md:pt-[calc(150*var(--u))]"
       style={
         {
           // The folder scales with the viewport *width* (with side margins), independent of the
           // height-aware --u used by the hero, so it stays wide on short laptop screens.
           "--u": "calc(min(100vw - 2 * max(20px, 4vw), 1680px) / 1920)",
-          paddingTop: u(PANEL_TOP),
           width: u(1920),
         } as CSSProperties
       }
@@ -48,7 +47,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       {/* Back of the folder: only the tab band is ever visible, so clip it just below the panel's top corners. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 bg-no-repeat"
+        className="pointer-events-none absolute inset-x-0 top-0 hidden bg-no-repeat md:block"
         style={{
           height: u(PANEL_TOP + PEEK),
           backgroundImage: "url(/images/works/folder-back.svg)",
@@ -57,16 +56,11 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       />
       <h2
         id={`${id}-title`}
-        // Centred in the folder tab: the tab spans x 0–~620 and y 0–161 of the 1920×1461 SVG
-        // (height scaled by PANEL_TOP / 201).
-        className="absolute left-0 top-0 flex items-center justify-center font-serif text-paper"
-        style={{
-          width: u(620),
-          height: u(161 * (PANEL_TOP / 201)),
-          fontSize: uMin(70, 14),
-          lineHeight: 1,
-          letterSpacing: "-0.05em",
-        }}
+        // Phones: a simple blue tab above the paper (the SVG folder shape gets too thin there).
+        // md+: centred in the SVG folder tab, which spans x 0–~620 and y 0–161 of the 1920×1461 SVG
+        // (height scaled by PANEL_TOP / 201 = 150 / 201 → 120.15).
+        className="relative inline-flex items-center rounded-t-2xl bg-brand-blue px-5 pb-2 pt-2.5 font-serif text-[20px] text-paper md:absolute md:left-0 md:top-0 md:h-[calc(120.15*var(--u))] md:w-[calc(620*var(--u))] md:justify-center md:rounded-none md:bg-transparent md:p-0 md:text-[length:max(14px,calc(70*var(--u)))]"
+        style={{ lineHeight: 1, letterSpacing: "-0.05em" }}
       >
         / selected works
       </h2>
@@ -74,7 +68,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       {/* Panel: collapses to a peek while closed, grows to its content when open. */}
       <div className="relative grid" style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", transition }}>
         <div
-          className="overflow-hidden rounded-t-[calc(100*var(--u))] bg-paper shadow-[0_0_5px_0_rgb(0_0_0/0.25)]"
+          className="overflow-hidden rounded-tr-2xl border-t-4 border-brand-blue bg-paper shadow-[0_0_5px_0_rgb(0_0_0/0.25)] md:rounded-t-[calc(100*var(--u))] md:border-t-0"
           style={{ minHeight: u(PEEK) }}
           aria-hidden={!isOpen}
           inert={!isOpen}

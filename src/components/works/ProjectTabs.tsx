@@ -36,7 +36,7 @@ export function ProjectTabs({ projects, activeId, onSelect }: Props) {
     <div
       role="tablist"
       aria-label="Projects"
-      className="flex snap-x gap-3 overflow-x-auto px-4 md:justify-center md:overflow-visible"
+      className="flex snap-x gap-3 overflow-x-auto px-4 [scrollbar-width:none] md:justify-center md:overflow-visible [&::-webkit-scrollbar]:hidden"
       style={{ gap: uMin(30, 10), paddingBlock: uMin(30, 14) }}
     >
       {projects.map((p, i) => {

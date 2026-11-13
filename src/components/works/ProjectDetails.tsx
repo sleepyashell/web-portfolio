@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element -- project logos are small SVGs */
 import type { Project } from "@/data/types";
-import { u, uMin } from "@/lib/units";
+import { uMin } from "@/lib/units";
 
 // Fixed, readable sizes for long copy; the three blocks sit side by side on wide screens so the
 // open folder fits in one window.
@@ -21,8 +21,9 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
 export function ProjectDetails({ project }: { project: Project }) {
   return (
     <div
-      className="flex flex-col items-center px-5 md:flex-row md:items-stretch md:px-0"
-      style={{ padding: `${u(20)} max(20px, ${u(200)}) ${u(20)} 0`, gap: uMin(40, 20) }}
+      // Phones: 20px gutters. md+: no left padding (logo column centres itself), right padding clears the arrow.
+      className="flex flex-col items-center px-5 py-2 md:flex-row md:items-stretch md:py-[calc(20*var(--u))] md:pl-0 md:pr-[max(20px,calc(200*var(--u)))]"
+      style={{ gap: uMin(40, 20) }}
     >
       {/* Logo sits centred (both axes) in its own column, between the folder edge and the text. */}
       <div className="flex shrink-0 items-center justify-center md:w-[calc(560*var(--u))]">

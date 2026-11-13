@@ -73,7 +73,7 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
     >
       {/* Every slide of every project is stacked in one grid cell, so the stage is always as tall as
           the tallest slide: switching slides or projects never moves the dots and arrows. */}
-      <div className="grid">
+      <div className="grid grid-cols-[minmax(0,1fr)]">
         {allProjects.flatMap((p) =>
           [null, ...mockupSlides(p)].map((group, i) => {
             const active = p.id === project.id && i === slide;
