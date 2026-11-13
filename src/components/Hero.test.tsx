@@ -32,11 +32,11 @@ describe("Hero", () => {
     expect(onViewWork).toHaveBeenCalledOnce();
   });
 
-  it("links Download CV to the CV file", () => {
+  it("shows Download CV as a decorative, non-interactive pill", () => {
     render(<Hero onViewWork={() => {}} />);
-    const link = screen.getByRole("link", { name: "Download CV" });
-    expect(link).toHaveAttribute("href", profile.cvUrl);
-    expect(link).toHaveAttribute("download");
+    expect(screen.getByText("Download CV")).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: /download cv/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /download cv/i })).not.toBeInTheDocument();
   });
 
   it("shows the intro line", () => {

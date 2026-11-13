@@ -10,8 +10,6 @@ export const profile: Profile = {
     "I got into tech the way many people do: growing up glued to laptops and phones, playing games and trying every app I could find, always curious about how they worked. Today that curiosity lives in UI/UX. I love the research side, understanding what people actually need, and I love the creative side just as much, since visual design has always been my thing.",
     "Right now I’m focused on sharpening my design craft while growing into software engineering, so I can take ideas from research all the way to working products.",
   ],
-  // Placeholder until the real CV is provided.
-  cvUrl: "/cv.pdf",
 };
 
 // Mockups exported from Figma frames JB / R / SJ / K / P, numbered in slide order.

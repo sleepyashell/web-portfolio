@@ -38,5 +38,4 @@ export type Profile = {
   headline: [string, string];
   intro: string;
   about: string[];
-  cvUrl: string;
 };

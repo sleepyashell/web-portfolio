@@ -8,12 +8,12 @@ import { FloatingIcon, type FloatingIconProps } from "./FloatingIcon";
 
 // Positions measured from Figma frame "FOLDER CLOSED 3" (node 24:1080).
 const icons: FloatingIconProps[] = [
-  { src: "/images/hero/icons/photoshop.webp", x: 163, y: 755, width: 111, height: 112, rotate: 0, delay: 0 },
-  { src: "/images/hero/icons/github.webp", x: 291, y: 977, width: 182, height: 171, rotate: -13.6, delay: 1.2 },
-  { src: "/images/hero/icons/after-effects.webp", x: 125, y: 1212, width: 142, height: 142, rotate: 4.3, delay: 2.4 },
-  { src: "/images/hero/icons/instagram.webp", x: 1589, y: 762, width: 159, height: 167, rotate: -9.49, delay: 0.6 },
-  { src: "/images/hero/icons/illustrator.webp", x: 1493, y: 1004, width: 98, height: 99, rotate: 16.1, delay: 1.8 },
-  { src: "/images/hero/icons/figma.webp", x: 1603, y: 1186, width: 204, height: 194, rotate: -5.8, delay: 3 },
+  { src: "/images/hero/icons/photoshop.webp", x: 163, y: 755, width: 111, height: 112, rotate: 0, delay: 0, mobile: { dx: -150, top: 225, size: 40 } },
+  { src: "/images/hero/icons/github.webp", x: 291, y: 977, width: 182, height: 171, rotate: -13.6, delay: 1.2, mobile: { dx: -152, top: 305, size: 52 } },
+  { src: "/images/hero/icons/after-effects.webp", x: 125, y: 1212, width: 142, height: 142, rotate: 4.3, delay: 2.4, mobile: { dx: -146, top: 395, size: 44 } },
+  { src: "/images/hero/icons/instagram.webp", x: 1589, y: 762, width: 159, height: 167, rotate: -9.49, delay: 0.6, mobile: { dx: 150, top: 220, size: 46 } },
+  { src: "/images/hero/icons/illustrator.webp", x: 1493, y: 1004, width: 98, height: 99, rotate: 16.1, delay: 1.8, mobile: { dx: 140, top: 300, size: 34 } },
+  { src: "/images/hero/icons/figma.webp", x: 1603, y: 1186, width: 204, height: 194, rotate: -5.8, delay: 3, mobile: { dx: 150, top: 380, size: 54 } },
 ];
 
 // Blue ring gradient from Figma, expressed relative to its 2082×1562 box.
@@ -119,10 +119,10 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
           <img aria-hidden alt="" src="/images/hero/arrow-down-circle.svg" style={{ width: iconSize, height: iconSize }} />
           View Work
         </button>
-        <a
-          href={profile.cvUrl}
-          download
-          className={`${pill} border-2 border-brand-blue bg-paper text-ink`}
+        {/* Decorative only (no CV is offered); kept for the visual balance of the Figma design. */}
+        <span
+          aria-hidden
+          className="inline-flex cursor-default select-none items-center rounded-[var(--radius-pill)] border-2 border-brand-blue bg-paper text-ink shadow-[var(--shadow-pill)]"
           style={pillStyle}
         >
           <span
@@ -133,7 +133,7 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
             <img alt="" src="/images/hero/download.svg" style={{ width: "43%", height: "auto" }} />
           </span>
           Download CV
-        </a>
+        </span>
       </div>
     </section>
   );
