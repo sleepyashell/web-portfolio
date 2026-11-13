@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import type { KeyboardEvent } from "react";
 import { mockupSlides } from "@/data/slides";
-import type { Project } from "@/data/types";
+import type { Project, ProjectImage } from "@/data/types";
 import { u, uMin } from "@/lib/units";
 import { ProjectDetails } from "./ProjectDetails";
 import type { WorksState } from "./useWorksState";
@@ -48,6 +48,22 @@ function Arrow({ dir, disabled, onClick }: { dir: "prev" | "next"; disabled: boo
   );
 }
 
+type MockupProps = {
+  load: boolean;
+  img: ProjectImage;
+  width: number;
+  height: number;
+  sizes: string;
+  className: string;
+};
+
+function Mockup({ load, img, width, height, sizes, className }: MockupProps) {
+  if (!load) {
+    return <span aria-hidden className={`block ${className}`} style={{ aspectRatio: `${width} / ${height}` }} />;
+  }
+  return <Image src={img.src} alt={img.alt} width={width} height={height} sizes={sizes} className={className} />;
+}
+
 export function ProjectCarousel({ project, allProjects, works, reduceMotion }: Props) {
   const { slide, slideCount, next, prev, goTo } = works;
 
@@ -77,17 +93,20 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
         {allProjects.flatMap((p) =>
           [null, ...mockupSlides(p)].map((group, i) => {
             const active = p.id === project.id && i === slide;
+            // Only the open project's mockups are fetched; the rest are same-sized boxes that just
+            // hold the stage height (avoids downloading every mockup while the folder is closed).
+            const load = works.isOpen && p.id === project.id;
             const key = `${p.id}-${i}`;
             const content = !group ? null : p.mockup === "laptop" ? (
               <div
                 className="mx-auto self-center px-5 md:px-0"
                 style={{ width: `max(${u(1105)}, min(100%, 640px))`, maxWidth: "100%" }}
               >
-                <Image
-                  src={group[0].src}
-                  alt={group[0].alt}
-                  width={2000}
-                  height={1208}
+                <Mockup
+                  load={load}
+                  img={group[0]}
+                  width={1400}
+                  height={845}
                   sizes="(min-width: 768px) 58vw, 100vw"
                   className="mx-auto h-auto max-h-[50svh] w-full object-contain"
                 />
@@ -96,12 +115,12 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
               // Three phones side by side; height-capped so the row never outgrows the stage.
               <div className="flex items-center justify-center px-5 md:px-0" style={{ gap: uMin(60, 10) }}>
                 {group.map((img) => (
-                  <Image
+                  <Mockup
                     key={img.src}
-                    src={img.src}
-                    alt={img.alt}
-                    width={600}
-                    height={1245}
+                    load={load}
+                    img={img}
+                    width={420}
+                    height={872}
                     sizes="(min-width: 768px) 16vw, 30vw"
                     className="h-auto w-[calc((100%-20px)/3)] object-contain md:h-[min(50svh,calc(560*var(--u)))] md:w-auto"
                   />
@@ -146,7 +165,7 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
               aria-label={`Go to slide ${i + 1}`}
               aria-current={i === slide ? "true" : undefined}
               onClick={() => goTo(i)}
-              className={`rounded-full transition-colors ${i === slide ? "bg-folder-blue" : "bg-[#e5e5ea]"}`}
+              className={`rounded-full transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue ${i === slide ? "bg-folder-blue" : "bg-[#e5e5ea]"}`}
               style={{ width: uMin(14, 8), height: uMin(14, 8) }}
             />
           ))}

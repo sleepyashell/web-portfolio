@@ -130,7 +130,7 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
             className="grid place-items-center rounded-full bg-brand-blue"
             style={{ width: iconSize, height: iconSize }}
           >
-            <img alt="" src="/images/hero/download.svg" style={{ width: "43%", height: "auto" }} />
+            <img alt="" src="/images/hero/download.svg" width={30} height={36} style={{ width: "43%", height: "auto" }} />
           </span>
           Download CV
         </span>
