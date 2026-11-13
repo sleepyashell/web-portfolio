@@ -10,7 +10,6 @@ export const profile: Profile = {
     "I got into tech the way many people do: growing up glued to laptops and phones, playing games and trying every app I could find, always curious about how they worked. Today that curiosity lives in UI/UX. I love the research side, understanding what people actually need, and I love the creative side just as much, since visual design has always been my thing.",
     "Right now I’m focused on sharpening my design craft while growing into software engineering, so I can take ideas from research all the way to working products.",
   ],
-  education: "B.Sc. Informatics, Universitas Diponegoro (2024 – present)",
   // Placeholder until the real CV is provided.
   cvUrl: "/cv.pdf",
 };
@@ -168,8 +167,8 @@ export const skills: Skill[] = [
 
 // Placeholders — replace with real values before launch.
 export const contacts: Contact[] = [
-  { label: "Email", value: "you@example.com", href: "mailto:you@example.com" },
-  { label: "LinkedIn", value: "linkedin.com/in/username", href: "https://linkedin.com/in/username" },
+  { label: "Email", value: "syuraihumar@gmail.com", href: "mailto:syuraihumar@gmail.com" },
+  { label: "LinkedIn", value: "linkedin.com/in/syuraih-umar-khotthob", href: "https://linkedin.com/in/syuraih-umar-khotthob" },
   { label: "GitHub", value: "github.com/sleepyashell", href: "https://github.com/sleepyashell" },
-  { label: "Instagram", value: "@username", href: "https://instagram.com/username" },
+  { label: "Instagram", value: "@syuraihumarr", href: "https://www.instagram.com/syuraihumarr/" },
 ];

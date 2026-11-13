@@ -4,11 +4,10 @@ import { Skills } from "./Skills";
 import { profile, skills } from "@/data/content";
 
 describe("About", () => {
-  it("renders the heading, both paragraphs and education", () => {
+  it("renders the heading and both paragraphs", () => {
     render(<About />);
     expect(screen.getByRole("heading", { level: 2, name: "/ about me" })).toBeInTheDocument();
     profile.about.forEach((p) => expect(screen.getByText(p)).toBeInTheDocument());
-    expect(screen.getByText(profile.education)).toBeInTheDocument();
   });
 });
 

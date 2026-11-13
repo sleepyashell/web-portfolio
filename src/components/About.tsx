@@ -40,9 +40,6 @@ export function About() {
             {p}
           </p>
         ))}
-        <p className="text-ink/60" style={{ marginTop: "1.6em", fontSize: "0.6em" }}>
-          {profile.education}
-        </p>
       </div>
     </section>
   );

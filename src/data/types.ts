@@ -36,6 +36,5 @@ export type Profile = {
   headline: [string, string];
   intro: string;
   about: string[];
-  education: string;
   cvUrl: string;
 };
