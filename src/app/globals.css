@@ -28,6 +28,11 @@
   --tracking-tight-5: -0.05em;
 }
 
+/* 1 Figma px on a 1920px-wide canvas, scaled to the viewport (never above 1px). */
+:root {
+  --u: min(1px, calc(100vw / 1920));
+}
+
 html {
   scroll-behavior: smooth;
 }
