@@ -2,6 +2,7 @@
 
 /* eslint-disable @next/next/no-img-element -- folder shape and arrow are SVGs */
 import { usePrefersReducedMotion } from "@/lib/usePrefersReducedMotion";
+import type { CSSProperties } from "react";
 import type { Project } from "@/data/types";
 import { u, uMin } from "@/lib/units";
 import { ProjectCarousel } from "./ProjectCarousel";
@@ -15,10 +16,12 @@ type Props = {
 };
 
 // Geometry from Figma frames "FOLDER CLOSED 3" / "FOLDER OPENED 1", relative to the folder top (y=1992).
-const PANEL_TOP = 201;
-const PEEK = 180; // visible panel height while closed (panel top → flap top + overlap)
-const FLAP_OVERLAP = 140;
-const FLAP_HEIGHT = 1350;
+// Figma tab band is 201px; compressed to 150 so the open folder fits in one window.
+const PANEL_TOP = 150;
+const PEEK = 100; // visible panel height while closed (panel top → flap top + overlap)
+const FLAP_OVERLAP = 60;
+// Figma flap is 1350px; shortened so the open folder fits in one window.
+const FLAP_HEIGHT = 150;
 
 export function WorksFolder({ works, projects, id = "works" }: Props) {
   const reduceMotion = usePrefersReducedMotion();
@@ -31,20 +34,31 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       id={id}
       aria-labelledby={`${id}-title`}
       data-reduced-motion={reduceMotion ? "true" : "false"}
-      className="relative scroll-mt-4"
-      style={{ paddingTop: u(PANEL_TOP) }}
+      className="relative mx-auto max-w-full scroll-mt-6"
+      style={
+        {
+          // The folder scales with the viewport *width* (with side margins), independent of the
+          // height-aware --u used by the hero, so it stays wide on short laptop screens.
+          "--u": "calc(min(100vw - 2 * max(20px, 4vw), 1680px) / 1920)",
+          paddingTop: u(PANEL_TOP),
+          width: u(1920),
+        } as CSSProperties
+      }
     >
-      <img
-        src="/images/works/folder-back.svg"
-        alt=""
+      {/* Back of the folder: only the tab band is ever visible, so clip it just below the panel's top corners. */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 w-full"
-        style={{ height: u(1461) }}
+        className="pointer-events-none absolute inset-x-0 top-0 bg-no-repeat"
+        style={{
+          height: u(PANEL_TOP + PEEK),
+          backgroundImage: "url(/images/works/folder-back.svg)",
+          backgroundSize: `100% ${u(1461 * (PANEL_TOP / 201))}`,
+        }}
       />
       <h2
         id={`${id}-title`}
         className="absolute font-serif text-paper"
-        style={{ left: u(78), top: u(41), fontSize: uMin(80, 14), lineHeight: 0.87, letterSpacing: "-0.05em" }}
+        style={{ left: u(78), top: u(30), fontSize: uMin(70, 14), lineHeight: 0.87, letterSpacing: "-0.05em" }}
       >
         / selected works
       </h2>
@@ -57,9 +71,17 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
           aria-hidden={!isOpen}
           inert={!isOpen}
         >
-          <ProjectTabs projects={projects} activeId={project.id} onSelect={selectProject} />
-          <div role="tabpanel" id={panelId(project.id)} aria-labelledby={tabId(project.id)}>
-            <ProjectCarousel project={project} works={works} reduceMotion={reduceMotion} />
+          {/* Blank paper while closed (as in Figma); content fades in once the folder opens. */}
+          <div
+            style={{
+              opacity: isOpen ? 1 : 0,
+              transition: reduceMotion ? "none" : `opacity 300ms ease ${isOpen ? "250ms" : "0ms"}`,
+            }}
+          >
+            <ProjectTabs projects={projects} activeId={project.id} onSelect={selectProject} />
+            <div role="tabpanel" id={panelId(project.id)} aria-labelledby={tabId(project.id)}>
+              <ProjectCarousel project={project} works={works} reduceMotion={reduceMotion} />
+            </div>
           </div>
           <div aria-hidden style={{ height: u(FLAP_OVERLAP) }} />
         </div>
@@ -77,7 +99,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
           aria-label={isOpen ? "Close selected works" : "Open selected works"}
           onClick={isOpen ? close : open}
           className="absolute left-1/2 grid -translate-x-1/2 place-items-center rounded-full bg-paper transition-transform hover:scale-105 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-paper"
-          style={{ top: u(100), width: uMin(150, 52), height: uMin(150, 52) }}
+          style={{ top: u(25), width: uMin(100, 44), height: uMin(100, 44) }}
         >
           <img
             src="/images/hero/arrow-down-circle.svg"

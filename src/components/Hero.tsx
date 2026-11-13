@@ -73,7 +73,7 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
         </h1>
       </div>
 
-      <div className="relative mx-auto" style={{ marginTop: u(-49), width: uMin(743, 280) }}>
+      <div className="relative mx-auto" style={{ marginTop: u(-49), width: uMin(743, 220) }}>
         <div
           className="mx-auto aspect-[700/840] rotate-3 bg-paper shadow-[var(--shadow-polaroid)]"
           style={{ width: "94.2%" }}
@@ -106,7 +106,7 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
 
       <div
         className="flex flex-wrap items-center justify-center px-4"
-        style={{ marginTop: uMin(80, 28), gap: uMin(50, 16), paddingBottom: uMin(60, 48) }}
+        style={{ marginTop: uMin(80, 20), gap: uMin(50, 16), paddingBottom: uMin(60, 32) }}
       >
         <button
           type="button"

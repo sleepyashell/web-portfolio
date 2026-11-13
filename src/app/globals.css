@@ -29,9 +29,10 @@
   --tracking-tight-5: -0.05em;
 }
 
-/* 1 Figma px on a 1920px-wide canvas, scaled to the viewport (never above 1px). */
+/* 1 Figma px on the 1920px canvas, scaled so that ~2000 Figma px of height (hero → buttons,
+   or the open folder) fit in one window, and the 1920px width fits the viewport. Never above 1px. */
 :root {
-  --u: min(1px, calc(100vw / 1920));
+  --u: min(1px, calc(100vw / 1920), calc(100svh / 2000));
 }
 
 html {

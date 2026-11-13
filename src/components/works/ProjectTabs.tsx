@@ -37,7 +37,7 @@ export function ProjectTabs({ projects, activeId, onSelect }: Props) {
       role="tablist"
       aria-label="Projects"
       className="flex snap-x gap-3 overflow-x-auto px-4 md:justify-center md:overflow-visible"
-      style={{ gap: uMin(30, 10), paddingBlock: uMin(50, 16) }}
+      style={{ gap: uMin(30, 10), paddingBlock: uMin(30, 14) }}
     >
       {projects.map((p, i) => {
         const selected = p.id === activeId;
@@ -59,10 +59,10 @@ export function ProjectTabs({ projects, activeId, onSelect }: Props) {
               selected ? "border-brand-blue bg-folder-blue text-paper" : "border-separator bg-paper hover:bg-chip"
             }`}
             style={{
-              height: uMin(100, 44),
+              height: uMin(84, 40),
               gap: uMin(20, 8),
               padding: `0 ${uMin(40, 16)} 0 ${uMin(35, 12)}`,
-              fontSize: uMin(40, 16),
+              fontSize: uMin(34, 15),
               color: selected ? undefined : `var(--color-${p.accent})`,
             }}
           >
@@ -71,8 +71,8 @@ export function ProjectTabs({ projects, activeId, onSelect }: Props) {
               alt=""
               aria-hidden
               style={{
-                width: uMin(50, 22),
-                height: uMin(50, 22),
+                width: uMin(42, 20),
+                height: uMin(42, 20),
                 filter: selected && !p.iconActive ? "brightness(0) invert(1)" : undefined,
               }}
             />
