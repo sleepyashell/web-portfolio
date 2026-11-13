@@ -14,14 +14,14 @@ export function Footer() {
     >
       <h2
         className="font-serif italic"
-        style={{ fontSize: "clamp(48px, 5.5vw, 104px)", lineHeight: 0.87, letterSpacing: "-0.05em" }}
+        style={{ fontSize: "clamp(40px, 4vw, 76px)", lineHeight: 0.87, letterSpacing: "-0.05em" }}
       >
         Let’s Connect!
       </h2>
 
       <ul
         className="flex flex-col flex-wrap sm:flex-row"
-        style={{ marginTop: "clamp(32px, 3vw, 64px)", columnGap: "clamp(32px, 4vw, 80px)", rowGap: 24 }}
+        style={{ marginTop: "clamp(28px, 2.5vw, 48px)", columnGap: "clamp(28px, 3.5vw, 64px)", rowGap: 24 }}
       >
         {contacts.map((c) => {
           const external = !c.href.startsWith("mailto:");
@@ -32,12 +32,12 @@ export function Footer() {
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="group block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-paper"
               >
-                <span className="block font-medium" style={{ fontSize: "clamp(18px, 1.6vw, 30px)", letterSpacing: "-0.05em" }}>
+                <span className="block font-medium" style={{ fontSize: "clamp(17px, 1.35vw, 24px)", letterSpacing: "-0.05em" }}>
                   {c.label}
                 </span>
                 <span
                   className="mt-1 block text-paper/80 underline-offset-4 group-hover:underline"
-                  style={{ fontSize: "clamp(15px, 1.25vw, 24px)", letterSpacing: "-0.05em" }}
+                  style={{ fontSize: "clamp(14px, 1.1vw, 19px)", letterSpacing: "-0.05em" }}
                 >
                   {c.value}
                 </span>
