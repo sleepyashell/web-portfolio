@@ -4,7 +4,7 @@ import { u, uMin } from "@/lib/units";
 export function TopBar() {
   return (
     <header
-      className="absolute inset-x-0 top-0 z-20 grid grid-cols-[1fr_auto_1fr] items-center gap-3"
+      className="absolute inset-x-0 top-0 z-20 flex items-center justify-between gap-3 sm:grid sm:grid-cols-[1fr_auto_1fr]"
       style={{ padding: `${uMin(50, 16)} ${uMin(50, 16)} 0`, fontSize: uMin(24, 12) }}
     >
       <span className="truncate">{profile.name}</span>
