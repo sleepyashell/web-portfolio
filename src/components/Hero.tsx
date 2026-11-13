@@ -39,7 +39,9 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
         className="absolute left-1/2 -z-10 -translate-x-1/2"
         style={{
           top: u(-89),
-          width: u(2082),
+          // Stretched to the full window width (Figma: 2082px on a 1920px canvas → 108.4%),
+          // height still follows the design scale.
+          width: "108.4%",
           height: u(1562),
           backgroundImage: ringGradient,
           filter: `blur(${u(52.35)})`,
