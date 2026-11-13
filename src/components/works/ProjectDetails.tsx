@@ -37,7 +37,7 @@ export function ProjectDetails({ project }: { project: Project }) {
             <span className="mr-2 inline-block rounded-full bg-chip px-2 py-0.5 font-medium text-ink/80">
               Team Project
             </span>
-          )}
+          )}{" "}
           <span>{project.context}</span>
           <span aria-hidden> · </span>
           <span>{project.role}</span>
