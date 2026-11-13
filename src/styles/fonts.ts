@@ -1,5 +1,4 @@
 import localFont from "next/font/local";
-import { Instrument_Serif } from "next/font/google";
 
 export const fontSans = localFont({
   variable: "--font-zt-nature",
@@ -7,6 +6,8 @@ export const fontSans = localFont({
   src: [
     { path: "../../public/fonts/ZTNature-Thin.woff2", weight: "100", style: "normal" },
     { path: "../../public/fonts/ZTNature-ThinItalic.woff2", weight: "100", style: "italic" },
+    { path: "../../public/fonts/ZTNature-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/ZTNature-Italic.woff2", weight: "400", style: "italic" },
     { path: "../../public/fonts/ZTNature-Medium.woff2", weight: "500", style: "normal" },
     { path: "../../public/fonts/ZTNature-MediumItalic.woff2", weight: "500", style: "italic" },
     { path: "../../public/fonts/ZTNature-Black.woff2", weight: "900", style: "normal" },
@@ -14,10 +15,12 @@ export const fontSans = localFont({
   ],
 });
 
-export const fontSerif = Instrument_Serif({
+// Self-hosted (SIL Open Font License 1.1, see public/fonts/OFL-InstrumentSerif.txt).
+export const fontSerif = localFont({
   variable: "--font-instrument-serif",
-  weight: "400",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
   display: "swap",
+  src: [
+    { path: "../../public/fonts/InstrumentSerif-Regular.woff2", weight: "400", style: "normal" },
+    { path: "../../public/fonts/InstrumentSerif-Italic.woff2", weight: "400", style: "italic" },
+  ],
 });

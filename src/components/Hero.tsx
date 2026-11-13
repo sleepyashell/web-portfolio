@@ -9,11 +9,11 @@ import { FloatingIcon, type FloatingIconProps } from "./FloatingIcon";
 // Positions measured from Figma frame "FOLDER CLOSED 3" (node 24:1080).
 const icons: FloatingIconProps[] = [
   { src: "/images/hero/icons/photoshop.webp", x: 163, y: 755, width: 111, height: 112, rotate: 0, delay: 0 },
-  { src: "/images/hero/icons/github.webp", x: 292, y: 934, width: 182, height: 171, rotate: -13.6, delay: 1.2 },
-  { src: "/images/hero/icons/after-effects.webp", x: 114, y: 1212, width: 142, height: 142, rotate: 4.3, delay: 2.4 },
-  { src: "/images/hero/icons/instagram.webp", x: 1589, y: 736, width: 159, height: 167, rotate: -9.49, delay: 0.6 },
-  { src: "/images/hero/icons/illustrator.webp", x: 1466, y: 1004, width: 98, height: 99, rotate: 16.1, delay: 1.8 },
-  { src: "/images/hero/icons/figma.webp", x: 1603, y: 1166, width: 204, height: 194, rotate: -5.8, delay: 3 },
+  { src: "/images/hero/icons/github.webp", x: 291, y: 977, width: 182, height: 171, rotate: -13.6, delay: 1.2 },
+  { src: "/images/hero/icons/after-effects.webp", x: 125, y: 1212, width: 142, height: 142, rotate: 4.3, delay: 2.4 },
+  { src: "/images/hero/icons/instagram.webp", x: 1589, y: 762, width: 159, height: 167, rotate: -9.49, delay: 0.6 },
+  { src: "/images/hero/icons/illustrator.webp", x: 1493, y: 1004, width: 98, height: 99, rotate: 16.1, delay: 1.8 },
+  { src: "/images/hero/icons/figma.webp", x: 1603, y: 1186, width: 204, height: 194, rotate: -5.8, delay: 3 },
 ];
 
 // Blue ring gradient from Figma, expressed relative to its 2082×1562 box.
@@ -60,13 +60,13 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
           className="relative font-serif italic md:whitespace-nowrap"
           style={{ marginTop: u(34), fontSize: uMin(180, 48), lineHeight: 0.87, letterSpacing: "-0.05em" }}
         >
-          {/* Decorative "&" sized in em so it scales with the headline (186×200 at 180px in Figma). */}
+          {/* Decorative "&" sized in em so it scales with the headline (node 31:51: 138×195 incl. stroke, 59px below the headline top at 180px). */}
           <img
             aria-hidden
             alt=""
             src="/images/hero/ampersand.svg"
             className="pointer-events-none absolute left-1/2 -translate-x-1/2"
-            style={{ top: "0.317em", width: "1.033em", height: "1.111em" }}
+            style={{ top: "0.328em", width: "0.767em", height: "1.083em" }}
           />
           <span className="block">{profile.headline[0]}</span>
           <span className="block">{profile.headline[1]}</span>
