@@ -54,21 +54,23 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
           backgroundSize: `100% ${u(1461 * (PANEL_TOP / 201))}`,
         }}
       />
+      {/* Phones: plain blue back of the folder behind the paper's top edge, joined to the tab. */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-9 h-16 rounded-tr-2xl bg-brand-blue md:hidden" />
       <h2
         id={`${id}-title`}
         // Phones: a simple blue tab above the paper (the SVG folder shape gets too thin there).
         // md+: centred in the SVG folder tab, which spans x 0–~620 and y 0–161 of the 1920×1461 SVG
         // (height scaled by PANEL_TOP / 201 = 150 / 201 → 120.15).
-        className="relative inline-flex items-center rounded-t-2xl bg-brand-blue px-5 pb-2 pt-2.5 font-serif text-[20px] text-paper md:absolute md:left-0 md:top-0 md:h-[calc(120.15*var(--u))] md:w-[calc(620*var(--u))] md:justify-center md:rounded-none md:bg-transparent md:p-0 md:text-[length:max(14px,calc(70*var(--u)))]"
+        className="relative inline-flex h-10 items-center rounded-t-2xl bg-brand-blue px-5 font-serif text-[20px] text-paper md:absolute md:left-0 md:top-0 md:h-[calc(120.15*var(--u))] md:w-[calc(620*var(--u))] md:justify-center md:rounded-none md:bg-transparent md:p-0 md:text-[length:max(14px,calc(70*var(--u)))]"
         style={{ lineHeight: 1, letterSpacing: "-0.05em" }}
       >
         / selected works
       </h2>
 
       {/* Panel: collapses to a peek while closed, grows to its content when open. */}
-      <div className="relative grid" style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", transition }}>
+      <div className="relative mt-2.5 grid md:mt-0" style={{ gridTemplateRows: isOpen ? "1fr" : "0fr", transition }}>
         <div
-          className="overflow-hidden rounded-tr-2xl border-t-4 border-brand-blue bg-paper shadow-[0_0_5px_0_rgb(0_0_0/0.25)] md:rounded-t-[calc(100*var(--u))] md:border-t-0"
+          className="overflow-hidden rounded-t-2xl bg-paper shadow-[0_0_5px_0_rgb(0_0_0/0.25)] md:rounded-t-[calc(100*var(--u))]"
           style={{ minHeight: u(PEEK) }}
           aria-hidden={!isOpen}
           inert={!isOpen}
