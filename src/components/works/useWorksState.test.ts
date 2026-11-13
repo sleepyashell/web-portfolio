@@ -10,7 +10,7 @@ describe("useWorksState", () => {
     expect(result.current.isOpen).toBe(false);
     expect(result.current.activeId).toBe("salingjaga");
     expect(result.current.slide).toBe(0);
-    expect(result.current.slideCount).toBe(2);
+    expect(result.current.slideCount).toBe(4);
   });
 
   it("opens and closes", () => {

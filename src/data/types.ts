@@ -19,6 +19,8 @@ export type Project = {
   problem: string;
   process: string;
   solution: string[];
+  /** "laptop": one mockup per slide. "phone": three mockups side by side per slide. */
+  mockup: "laptop" | "phone";
   images: ProjectImage[];
   liveUrl?: string;
 };

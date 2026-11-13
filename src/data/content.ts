@@ -14,10 +14,12 @@ export const profile: Profile = {
   cvUrl: "/cv.pdf",
 };
 
-// Placeholder mockup until real images are ready.
-const placeholder = (name: string) => [
-  { src: "/images/projects/placeholder.svg", alt: `${name} mockup placeholder` },
-];
+// Mockups exported from Figma frames JB / R / SJ / K / P, numbered in slide order.
+const mockups = (id: string, name: string, count: number) =>
+  Array.from({ length: count }, (_, i) => ({
+    src: `/images/projects/${id}/${i + 1}.webp`,
+    alt: `${name} screen ${i + 1}`,
+  }));
 
 export const projects: Project[] = [
   {
@@ -42,7 +44,8 @@ export const projects: Project[] = [
       "Community fraud reporting synced with official authority data",
       "Built-in security education for users with limited tech literacy",
     ],
-    images: placeholder("SalingJaga"),
+    mockup: "phone",
+    images: mockups("salingjaga", "SalingJaga", 9),
   },
   {
     id: "kembali",
@@ -66,7 +69,8 @@ export const projects: Project[] = [
       "Verified handover using face verification and a digital signature",
       "Officer dashboard to manage, verify, and return items",
     ],
-    images: placeholder("Kembali"),
+    mockup: "phone",
+    images: mockups("kembali", "Kembali", 8),
   },
   {
     id: "jagaborneo",
@@ -90,7 +94,8 @@ export const projects: Project[] = [
       "Weather-based fire risk prediction",
       "Community reporting as additional on-the-ground information",
     ],
-    images: [{ src: "/images/projects/jagaborneo/1.webp", alt: "JagaBorneo landing page on a laptop" }],
+    mockup: "laptop",
+    images: mockups("jagaborneo", "JagaBorneo", 3),
   },
   {
     id: "rintis-ai",
@@ -114,7 +119,8 @@ export const projects: Project[] = [
       "Price simulation for what-if analysis before setting a price",
       "Alternative micro-niche suggestions when a market is too crowded",
     ],
-    images: placeholder("Rintis AI"),
+    mockup: "laptop",
+    images: mockups("rintis-ai", "Rintis AI", 2),
   },
   {
     id: "pahamind",
@@ -139,7 +145,8 @@ export const projects: Project[] = [
       "Visual Learning Path: maps how concepts connect",
       "Smart Highlighting and gamified streaks",
     ],
-    images: placeholder("Pahamind"),
+    mockup: "phone",
+    images: mockups("pahamind", "Pahamind", 8),
   },
 ];
 

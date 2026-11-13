@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { mockupSlides } from "@/data/slides";
 import type { Project } from "@/data/types";
 
 export type WorksState = {
@@ -11,7 +12,7 @@ export type WorksState = {
   /** Selecting a project always goes back to its first slide. */
   selectProject(id: string): void;
   slide: number;
-  /** 1 details slide + one slide per image. */
+  /** 1 details slide + one slide per mockup group. */
   slideCount: number;
   next(): void;
   prev(): void;
@@ -25,7 +26,7 @@ export function useWorksState(projects: Project[], defaultId: string): WorksStat
 
   const slideCount = useMemo(() => {
     const p = projects.find((x) => x.id === activeId);
-    return 1 + (p?.images.length ?? 0);
+    return 1 + (p ? mockupSlides(p).length : 0);
   }, [projects, activeId]);
 
   const selectProject = useCallback((id: string) => {

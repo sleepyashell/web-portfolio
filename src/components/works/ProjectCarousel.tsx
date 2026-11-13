@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { KeyboardEvent } from "react";
+import { mockupSlides } from "@/data/slides";
 import type { Project } from "@/data/types";
 import { u, uMin } from "@/lib/units";
 import { ProjectDetails } from "./ProjectDetails";
@@ -74,26 +75,40 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
           the tallest slide: switching slides or projects never moves the dots and arrows. */}
       <div className="grid">
         {allProjects.flatMap((p) =>
-          [null, ...p.images].map((img, i) => {
+          [null, ...mockupSlides(p)].map((group, i) => {
             const active = p.id === project.id && i === slide;
             const key = `${p.id}-${i}`;
-            const content = img ? (
+            const content = !group ? null : p.mockup === "laptop" ? (
               <div
                 className="mx-auto self-center px-5 md:px-0"
                 style={{ width: `max(${u(1105)}, min(100%, 640px))`, maxWidth: "100%" }}
               >
                 <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={1105}
-                  height={667}
+                  src={group[0].src}
+                  alt={group[0].alt}
+                  width={2000}
+                  height={1208}
                   sizes="(min-width: 768px) 58vw, 100vw"
                   className="mx-auto h-auto max-h-[50svh] w-full object-contain"
                 />
               </div>
             ) : (
-              <ProjectDetails project={p} />
+              // Three phones side by side; height-capped so the row never outgrows the stage.
+              <div className="flex items-center justify-center px-5 md:px-0" style={{ gap: uMin(60, 10) }}>
+                {group.map((img) => (
+                  <Image
+                    key={img.src}
+                    src={img.src}
+                    alt={img.alt}
+                    width={600}
+                    height={1245}
+                    sizes="(min-width: 768px) 16vw, 30vw"
+                    className="h-auto w-[calc((100%-20px)/3)] object-contain md:h-[min(50svh,calc(560*var(--u)))] md:w-auto"
+                  />
+                ))}
+              </div>
             );
+            const body = content ?? <ProjectDetails project={p} />;
             const cell = { gridArea: "1 / 1" };
             return active ? (
               <motion.div
@@ -107,11 +122,11 @@ export function ProjectCarousel({ project, allProjects, works, reduceMotion }: P
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: reduceMotion ? 0 : 0.25 }}
               >
-                {content}
+                {body}
               </motion.div>
             ) : (
               <div key={key} aria-hidden inert className="invisible flex flex-col justify-center" style={cell}>
-                {content}
+                {body}
               </div>
             );
           }),

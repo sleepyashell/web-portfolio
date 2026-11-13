@@ -48,7 +48,7 @@ describe("WorksFolder", () => {
   it("shows context, role and the three content headings on the first slide", async () => {
     render(<Harness />);
     await userEvent.click(screen.getByRole("button", { name: "Open selected works" }));
-    const panel = within(screen.getByRole("tabpanel")).getByRole("group", { name: "1 of 2" });
+    const panel = within(screen.getByRole("tabpanel")).getByRole("group", { name: "1 of 4" });
     expect(within(panel).getByText(projects[0].context)).toBeInTheDocument();
     expect(panel).toHaveTextContent("Team Project");
     expect(within(panel).getByText(projects[0].role)).toBeInTheDocument();
@@ -63,8 +63,10 @@ describe("WorksFolder", () => {
     expect(screen.getByRole("button", { name: "Previous slide" })).toBeDisabled();
     screen.getByRole("region", { name: /SalingJaga/ }).focus();
     await userEvent.keyboard("{ArrowRight}");
-    expect(await screen.findByRole("img", { name: "SalingJaga mockup placeholder" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Next slide" })).toBeDisabled();
+    for (const n of [1, 2, 3]) {
+      expect(await screen.findByRole("img", { name: `SalingJaga screen ${n}` })).toBeInTheDocument();
+    }
+    expect(screen.getByRole("group", { name: "2 of 4" })).toBeInTheDocument();
   });
 
   it("switches tab with the keyboard and resets to the first slide", async () => {
