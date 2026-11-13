@@ -2,9 +2,10 @@
 import type { Project } from "@/data/types";
 import { u, uMin } from "@/lib/units";
 
-const body = { fontSize: uMin(32, 15), lineHeight: 1.25 };
+// Looser than the global -5% tracking so long paragraphs stay readable.
+const body = { fontSize: uMin(32, 15), lineHeight: 1.45, letterSpacing: "-0.02em" };
 const heading = "font-medium";
-const headingStyle = { fontSize: uMin(40, 18), marginTop: uMin(38, 16) };
+const headingStyle = { fontSize: uMin(40, 18), marginTop: uMin(44, 20), marginBottom: uMin(8, 4), letterSpacing: "-0.04em" };
 
 export function ProjectDetails({ project }: { project: Project }) {
   return (
@@ -19,7 +20,8 @@ export function ProjectDetails({ project }: { project: Project }) {
         style={{ width: uMin(400, 120), height: uMin(400, 120) }}
       />
 
-      <div className="w-full md:w-auto" style={{ maxWidth: `max(${u(1035)}, 100%)`, width: "100%", ...body }}>
+      {/* Figma column is 1035px; trimmed to 1000 so text clears the next-arrow even with a scrollbar. */}
+      <div className="w-full shrink-0 md:w-[calc(1000*var(--u))]" style={body}>
         <p className="text-ink/60" style={{ fontSize: uMin(24, 13) }}>
           <span>{project.context}</span>
           <span aria-hidden> · </span>
