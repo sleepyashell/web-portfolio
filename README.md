@@ -1,8 +1,8 @@
-# Syuraih Umar Khotthob — Portfolio
+# Syuraih Umar Khotthob Portfolio
 
 Personal portfolio of a UI/UX designer who also builds. Designed in Figma, built by hand.
 
-**Live:** _coming soon_
+**Live:** https://syuraih-umar-portfolio.vercel.app/
 
 ## Highlights
 
