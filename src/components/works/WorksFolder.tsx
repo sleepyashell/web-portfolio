@@ -57,8 +57,16 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       />
       <h2
         id={`${id}-title`}
-        className="absolute font-serif text-paper"
-        style={{ left: u(78), top: u(30), fontSize: uMin(70, 14), lineHeight: 0.87, letterSpacing: "-0.05em" }}
+        // Centred in the folder tab: the tab spans x 0–~620 and y 0–161 of the 1920×1461 SVG
+        // (height scaled by PANEL_TOP / 201).
+        className="absolute left-0 top-0 flex items-center justify-center font-serif text-paper"
+        style={{
+          width: u(620),
+          height: u(161 * (PANEL_TOP / 201)),
+          fontSize: uMin(70, 14),
+          lineHeight: 1,
+          letterSpacing: "-0.05em",
+        }}
       >
         / selected works
       </h2>
