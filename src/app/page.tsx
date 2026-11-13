@@ -1,6 +1,8 @@
 "use client";
 
+import { About } from "@/components/About";
 import { Hero } from "@/components/Hero";
+import { Skills } from "@/components/Skills";
 import { TopBar } from "@/components/TopBar";
 import { WorksFolder } from "@/components/works/WorksFolder";
 import { useWorksState } from "@/components/works/useWorksState";
@@ -19,6 +21,8 @@ export default function Home() {
       <TopBar />
       <Hero onViewWork={viewWork} />
       <WorksFolder works={works} projects={projects} />
+      <About />
+      <Skills />
     </main>
   );
 }

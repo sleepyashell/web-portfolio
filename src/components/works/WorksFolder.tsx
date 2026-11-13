@@ -44,7 +44,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       <h2
         id={`${id}-title`}
         className="absolute font-serif text-paper"
-        style={{ left: u(78), top: u(41), fontSize: uMin(80, 26), lineHeight: 0.87, letterSpacing: "-0.05em" }}
+        style={{ left: u(78), top: u(41), fontSize: uMin(80, 14), lineHeight: 0.87, letterSpacing: "-0.05em" }}
       >
         / selected works
       </h2>
