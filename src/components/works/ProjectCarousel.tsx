@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- arrow icon is a small SVG */
 import Image from "next/image";
 import { motion } from "framer-motion";
 import type { KeyboardEvent } from "react";
@@ -22,20 +21,26 @@ function Arrow({ dir, disabled, onClick }: { dir: "prev" | "next"; disabled: boo
       aria-label={dir === "prev" ? "Previous slide" : "Next slide"}
       disabled={disabled}
       onClick={onClick}
-      className="grid shrink-0 place-items-center rounded-full transition-opacity disabled:opacity-30 md:disabled:invisible focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-blue md:absolute md:top-1/2 md:-translate-y-1/2"
+      // Circle drawn with a CSS border (the Figma SVG's hairline stroke got clipped at fractional sizes).
+      className="grid shrink-0 place-items-center rounded-full border border-separator bg-paper transition-opacity disabled:opacity-30 md:disabled:invisible focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-brand-blue md:absolute md:top-1/2 md:-translate-y-1/2"
       style={{
         width: uMin(100, 44),
         height: uMin(100, 44),
         ...(dir === "prev" ? { left: u(50) } : { right: u(50) }),
       }}
     >
-      <img
-        src="/images/works/arrow-circle.svg"
-        alt=""
+      <svg
         aria-hidden
+        viewBox="0 0 100 100"
         className="size-full"
         style={{ rotate: dir === "prev" ? "90deg" : "-90deg" }}
-      />
+      >
+        {/* Arrow path from Figma "Frame 15" (pointing down; rotated per direction). */}
+        <path
+          d="M52.5 32C52.5 30.6192 51.3807 29.4999 50 29.4999C48.6193 29.4999 47.5 30.6192 47.5 31.9999L50 31.9999L52.5 32ZM50 31.9999L47.5 31.9999L47.4999 67.4286L49.9999 67.4286L52.4999 67.4286L52.5 32L50 31.9999ZM48.2322 69.1964C49.2085 70.1727 50.7914 70.1727 51.7677 69.1964L67.6776 53.2865C68.6539 52.3102 68.6539 50.7273 67.6776 49.751C66.7013 48.7747 65.1184 48.7747 64.1421 49.751L49.9999 63.8931L35.8578 49.7509C34.8815 48.7746 33.2986 48.7746 32.3223 49.7509C31.346 50.7272 31.346 52.3102 32.3223 53.2865L48.2322 69.1964Z"
+          fill="currentColor"
+        />
+      </svg>
     </button>
   );
 }
