@@ -48,9 +48,9 @@ describe("WorksFolder", () => {
   it("shows context, role and the three content headings on the first slide", async () => {
     render(<Harness />);
     await userEvent.click(screen.getByRole("button", { name: "Open selected works" }));
-    const panel = screen.getByRole("tabpanel");
+    const panel = within(screen.getByRole("tabpanel")).getByRole("group", { name: "1 of 2" });
     expect(within(panel).getByText(projects[0].context)).toBeInTheDocument();
-    expect(within(panel).getByText("Team Project")).toBeInTheDocument();
+    expect(panel).toHaveTextContent("Team Project");
     expect(within(panel).getByText(projects[0].role)).toBeInTheDocument();
     for (const h of ["Problem", "Process", "Solution"]) {
       expect(within(panel).getByRole("heading", { name: h })).toBeInTheDocument();

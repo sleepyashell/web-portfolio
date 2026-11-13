@@ -80,7 +80,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
           >
             <ProjectTabs projects={projects} activeId={project.id} onSelect={selectProject} />
             <div role="tabpanel" id={panelId(project.id)} aria-labelledby={tabId(project.id)}>
-              <ProjectCarousel project={project} works={works} reduceMotion={reduceMotion} />
+              <ProjectCarousel project={project} allProjects={projects} works={works} reduceMotion={reduceMotion} />
             </div>
           </div>
           <div aria-hidden style={{ height: u(FLAP_OVERLAP) }} />

@@ -10,6 +10,8 @@ import type { WorksState } from "./useWorksState";
 
 type Props = {
   project: Project;
+  /** All projects, used to size the stage to the tallest slide. */
+  allProjects: Project[];
   works: WorksState;
   reduceMotion: boolean;
 };
@@ -45,7 +47,7 @@ function Arrow({ dir, disabled, onClick }: { dir: "prev" | "next"; disabled: boo
   );
 }
 
-export function ProjectCarousel({ project, works, reduceMotion }: Props) {
+export function ProjectCarousel({ project, allProjects, works, reduceMotion }: Props) {
   const { slide, slideCount, next, prev, goTo } = works;
 
   const onKeyDown = (e: KeyboardEvent) => {
@@ -59,8 +61,6 @@ export function ProjectCarousel({ project, works, reduceMotion }: Props) {
     }
   };
 
-  const image = slide > 0 ? project.images[slide - 1] : null;
-
   return (
     <div
       role="region"
@@ -70,21 +70,21 @@ export function ProjectCarousel({ project, works, reduceMotion }: Props) {
       onKeyDown={onKeyDown}
       className="relative outline-none focus-visible:ring-3 focus-visible:ring-brand-blue/40"
     >
-      <div className="md:min-h-[min(calc(560*var(--u)),50svh)]">
-          <motion.div
-            key={`${project.id}-${slide}`}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${slide + 1} of ${slideCount}`}
-            initial={reduceMotion ? false : { opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: reduceMotion ? 0 : 0.25 }}
-          >
-            {image ? (
-              <div className="mx-auto px-5 md:px-0" style={{ width: `max(${u(1105)}, min(100%, 640px))`, maxWidth: "100%", paddingTop: u(20) }}>
+      {/* Every slide of every project is stacked in one grid cell, so the stage is always as tall as
+          the tallest slide: switching slides or projects never moves the dots and arrows. */}
+      <div className="grid">
+        {allProjects.flatMap((p) =>
+          [null, ...p.images].map((img, i) => {
+            const active = p.id === project.id && i === slide;
+            const key = `${p.id}-${i}`;
+            const content = img ? (
+              <div
+                className="mx-auto self-center px-5 md:px-0"
+                style={{ width: `max(${u(1105)}, min(100%, 640px))`, maxWidth: "100%" }}
+              >
                 <Image
-                  src={image.src}
-                  alt={image.alt}
+                  src={img.src}
+                  alt={img.alt}
                   width={1105}
                   height={667}
                   sizes="(min-width: 768px) 58vw, 100vw"
@@ -92,9 +92,30 @@ export function ProjectCarousel({ project, works, reduceMotion }: Props) {
                 />
               </div>
             ) : (
-              <ProjectDetails project={project} />
-            )}
-          </motion.div>
+              <ProjectDetails project={p} />
+            );
+            const cell = { gridArea: "1 / 1" };
+            return active ? (
+              <motion.div
+                key={key}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${slide + 1} of ${slideCount}`}
+                className="flex flex-col justify-center"
+                style={cell}
+                initial={reduceMotion ? false : { opacity: 0, x: 24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: reduceMotion ? 0 : 0.25 }}
+              >
+                {content}
+              </motion.div>
+            ) : (
+              <div key={key} aria-hidden inert className="invisible flex flex-col justify-center" style={cell}>
+                {content}
+              </div>
+            );
+          }),
+        )}
       </div>
 
       <div
