@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Design tokens — taken from Figma file WEB-PORTFOLIO-2026 */
+@theme {
+  --font-sans: var(--font-zt-nature), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  --color-ink: #000000;
+  --color-paper: #ffffff;
+  --color-brand-blue: #30afff;
+  --color-folder-blue: #60c1e5;
+  --color-chip: #f2f2f7;
+  --color-separator: #c6c6c8;
+
+  /* Project accent colors (tab labels) */
+  --color-salingjaga: #81c028;
+  --color-kembali: #0d7ff2;
+  --color-rintis: #218bcc;
+  --color-pahamind: #ff7d29;
+
+  --radius-pill: 81px;
+  --radius-folder: 100px;
+
+  --shadow-pill: 0 0 10px 0 rgb(0 0 0 / 0.25);
+  --shadow-polaroid: 0 4px 4px 0 rgb(0 0 0 / 0.25);
+
+  /* Figma uses -5% letter spacing on every text style */
+  --tracking-tight-5: -0.05em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  letter-spacing: var(--tracking-tight-5);
+}
