@@ -54,8 +54,8 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
           backgroundSize: `100% ${u(1461 * (PANEL_TOP / 201))}`,
         }}
       />
-      {/* Phones: plain blue back of the folder behind the paper's top edge, joined to the tab. */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-9 h-16 rounded-tr-2xl bg-brand-blue md:hidden" />
+      {/* Phones: blue back of the folder joined to the tab; ends where the flap begins, so it never shows below the flap's rounded corners. */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-9 h-[22px] rounded-tr-2xl bg-brand-blue md:hidden" />
       <h2
         id={`${id}-title`}
         // Phones: a simple blue tab above the paper (the SVG folder shape gets too thin there).
@@ -94,7 +94,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
       {/* Front flap of the folder. */}
       <div
         className="relative rounded-[calc(100*var(--u))] bg-folder-blue"
-        style={{ marginTop: u(-FLAP_OVERLAP), height: u(FLAP_HEIGHT) }}
+        style={{ marginTop: u(-FLAP_OVERLAP), height: uMin(FLAP_HEIGHT, 64) }}
       >
         <button
           type="button"
@@ -103,7 +103,7 @@ export function WorksFolder({ works, projects, id = "works" }: Props) {
           aria-label={isOpen ? "Close selected works" : "Open selected works"}
           onClick={isOpen ? close : open}
           className="absolute left-1/2 grid -translate-x-1/2 place-items-center rounded-full bg-paper transition-transform hover:scale-105 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-paper"
-          style={{ top: u(25), width: uMin(100, 44), height: uMin(100, 44) }}
+          style={{ top: uMin(25, 10), width: uMin(100, 44), height: uMin(100, 44) }}
         >
           <img
             src="/images/hero/arrow-down-circle.svg"
