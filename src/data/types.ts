@@ -11,6 +11,8 @@ export type Project = {
   iconActive?: string;
   /** Tab label color, a theme color name (e.g. "kembali"). */
   accent: string;
+  /** Shown as a "Team Project" label above the context line. */
+  team: boolean;
   context: string;
   role: string;
   summary: string;

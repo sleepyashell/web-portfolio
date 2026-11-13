@@ -46,3 +46,13 @@ describe("content", () => {
     );
   });
 });
+
+describe("project labels", () => {
+  it("marks every project as a team project and drops 'deployed' from contexts", () => {
+    projects.forEach((p) => {
+      expect(p.team).toBe(true);
+      expect(p.context).not.toMatch(/deployed/i);
+    });
+    expect(projects.find((p) => p.id === "jagaborneo")?.context).toBe("Inception · Hackathon");
+  });
+});

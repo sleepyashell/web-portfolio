@@ -33,6 +33,11 @@ export function ProjectDetails({ project }: { project: Project }) {
 
       <div className="w-full min-w-0 flex-1" style={body}>
         <p className="text-ink/60" style={{ fontSize: "clamp(12px, 0.8vw, 14px)" }}>
+          {project.team && (
+            <span className="mr-2 inline-block rounded-full bg-chip px-2 py-0.5 font-medium text-ink/80">
+              Team Project
+            </span>
+          )}
           <span>{project.context}</span>
           <span aria-hidden> · </span>
           <span>{project.role}</span>

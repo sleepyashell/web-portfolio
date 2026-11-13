@@ -50,6 +50,7 @@ describe("WorksFolder", () => {
     await userEvent.click(screen.getByRole("button", { name: "Open selected works" }));
     const panel = screen.getByRole("tabpanel");
     expect(within(panel).getByText(projects[0].context)).toBeInTheDocument();
+    expect(within(panel).getByText("Team Project")).toBeInTheDocument();
     expect(within(panel).getByText(projects[0].role)).toBeInTheDocument();
     for (const h of ["Problem", "Process", "Solution"]) {
       expect(within(panel).getByRole("heading", { name: h })).toBeInTheDocument();

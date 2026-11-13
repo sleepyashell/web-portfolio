@@ -27,6 +27,7 @@ export const projects: Project[] = [
     logo: "/images/works/icons/salingjaga.svg",
     icon: "/images/works/icons/salingjaga.svg",
     accent: "salingjaga",
+    team: true,
     context: "UNITY #14 — 3rd Honorable Mention",
     role: "UX Researcher & UI Designer",
     summary:
@@ -50,6 +51,7 @@ export const projects: Project[] = [
     logo: "/images/works/icons/kembali.svg",
     icon: "/images/works/icons/kembali.svg",
     accent: "kembali",
+    team: true,
     context: "UXVIDIA · Arkavidia — Top 12 of 100+ teams",
     role: "UX Researcher & UI Designer",
     summary:
@@ -74,7 +76,8 @@ export const projects: Project[] = [
     icon: "/images/projects/jagaborneo/logo.svg",
     iconActive: "/images/works/icons/jagaborneo.svg",
     accent: "jagaborneo",
-    context: "Competition project — deployed",
+    team: true,
+    context: "Inception · Hackathon",
     role: "Product & UI Designer",
     summary:
       "A geospatial platform for monitoring forest and peatland fires and deforestation in Kalimantan.",
@@ -97,7 +100,8 @@ export const projects: Project[] = [
     icon: "/images/works/icons/rintis-ai.svg",
     iconActive: "/images/works/icons/rintis-ai-white.svg",
     accent: "rintis",
-    context: "COMPFEST 18 · AI Innovation Challenge — deployed",
+    team: true,
+    context: "COMPFEST 18 · AI Innovation Challenge",
     role: "Product & UI Designer",
     summary:
       "An explainable AI advisor that helps new sellers find the right product to sell online.",
@@ -120,6 +124,7 @@ export const projects: Project[] = [
     icon: "/images/works/icons/pahamind.svg",
     iconActive: "/images/works/icons/pahamind-white.svg",
     accent: "pahamind",
+    team: true,
     context: "Course project",
     role: "UX Researcher & UI Designer",
     summary:
