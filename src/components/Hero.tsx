@@ -50,7 +50,7 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
         <FloatingIcon key={icon.src} {...icon} />
       ))}
 
-      <p style={{ marginTop: uMin(200, 72), fontSize: uMin(120, 40), letterSpacing: "-0.05em", lineHeight: 1.2 }}>
+      <p className="font-light" style={{ marginTop: uMin(200, 72), fontSize: uMin(120, 40), letterSpacing: "-0.05em", lineHeight: 1.2 }}>
         Hello, I’m {profile.shortName}
       </p>
 
@@ -64,7 +64,7 @@ export function Hero({ onViewWork }: { onViewWork: () => void }) {
           <img
             aria-hidden
             alt=""
-            src="/images/hero/ampersand.svg"
+            src="/images/hero/ampersand-31-51.svg"
             className="pointer-events-none absolute left-1/2 -translate-x-1/2"
             style={{ top: "0.328em", width: "0.767em", height: "1.083em" }}
           />
